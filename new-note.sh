@@ -16,6 +16,8 @@ function new-note {
   echo "# ${_name}" > "$GHREPOS/notes/$_dir/$_name.md"
   echo >> "$GHREPOS/notes/$_dir/$_name.md"
   vim +2 "$GHREPOS/notes/$_dir/$_name.md"
-  cd "$GHREPOS/notes" && git add "$_dir/$_name.md" && git commit && cd - || echo 'No commit, returning'; cd -
+  cd "$GHREPOS/notes"
+  git add "$_dir/$_name.md"
+  git commit && (git push origin main && cd -) || echo 'No commit, returning'; cd -
 }
 
