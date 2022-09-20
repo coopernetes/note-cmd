@@ -2,22 +2,21 @@
 
 # This is not portable to MacOS
 function new-note {
-  _dir="$(date +%Y%m%d)"
-  _name="$(date +%H%M%S)"
-  if ! [ -z "$1" ]; then
-    _name="$1"
-  fi
-  if ! [ -z "$GHREPOS" ]; then
+  _dir="$(date +%Y%m%d%H%M%S)"
+  _title="$@"
+  if ! [[ -z "$GHREPOS" ]]; then
     mkdir -p $GHREPOS/notes/$_dir
   else
     echo "GHREPOS unset, bailing."
     exit 1
   fi
-  echo "# ${_name}" > "$GHREPOS/notes/$_dir/$_name.md"
-  echo >> "$GHREPOS/notes/$_dir/$_name.md"
-  vim +2 "$GHREPOS/notes/$_dir/$_name.md"
+  echo "# ${_title}" > "$GHREPOS/notes/$_dir/README.md"
+  echo >> "$GHREPOS/notes/$_dir/README.md"
+  vim +2 "$GHREPOS/notes/$_dir/README.md"
   cd "$GHREPOS/notes"
-  git add "$_dir/$_name.md"
-  git commit && (git push origin main && cd -) || echo 'No commit, returning'; cd -
+  git add "$_dir/"
+  git commit -m "${_title}"
+  git push origin main
+  cd -
 }
 
