@@ -1,16 +1,15 @@
 package main
 
 import (
-    "fmt"
-    zet "github.com/coopernetes/note-cmd/pkg/zet"
+	"fmt"
+	zet "github.com/coopernetes/note-cmd/pkg/zet"
 )
 
 func main() {
-    fmt.Printf("Note cmd run!")
-    fmt.Printf(Run())
+	fmt.Printf("Note cmd run!")
+	fmt.Printf(Run())
 }
 
 func Run() string {
-    return zet.Cmd()
+	return zet.Cmd()
 }
-

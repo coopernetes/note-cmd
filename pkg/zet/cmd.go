@@ -1,10 +1,10 @@
 package zet
 
 import (
-  "fmt"
+	"fmt"
 )
 
 func Cmd() string {
-    message := fmt.Sprintf("%s", "This is the message")
-    return message
+	message := fmt.Sprintf("%s", "This is the message")
+	return message
 }
